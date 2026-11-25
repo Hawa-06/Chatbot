@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<body>
+
+<!-- Fragment "header" : appelé par base.html avec fragments/header :: header -->
+<header th:fragment="header" class="bg-dark text-white py-3">
+    <div class="container d-flex flex-wrap align-items-center gap-3">
+
+        <a th:href="@{/}" class="h5 mb-0 text-white text-decoration-none">Omega IA</a>
+
+        <!-- Nouvelle conversation -->
+        <a th:href="@{/}" class="btn btn-outline-light btn-sm">
+            + Nouvelle conversation
+        </a>
+
+        <!-- Historique des conversations (menu déroulant Bootstrap) -->
+        <div class="dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                Historique
+            </button>
+            <div class="dropdown-menu p-0" style="min-width: 20rem;">
+                <div class="list-group list-group-flush">
+                    <a th:each="c : ${conversations}"
+                       th:href="@{/conversations/{id}(id=${c.id})}"
+                       th:text="${c.titre}"
+                       class="list-group-item list-group-item-action"
+                       th:classappend="${conversation != null and conversation.id == c.id} ? 'active' : ''">
+                    </a>
+                    <span th:if="${#lists.isEmpty(conversations)}"
+                          class="list-group-item text-muted">
+                        Aucune conversation
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+</body>
+</html>
