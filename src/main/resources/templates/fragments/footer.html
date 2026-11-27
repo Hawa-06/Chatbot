@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+</head>
 <body>
 
-<!-- Fragment "footer" : appelé par base.html avec fragments/footer :: footer -->
-<footer th:fragment="footer" class="text-center text-muted py-3 border-top">
-    <small>Omega IA &middot; Projet Chatbot IA &middot; BTS SIO SLAM</small>
+<footer th:fragment="footer" class="app-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <span class="footer-title">Talking <span>Hawa</span></span>
+            <span class="footer-badge">Assistant IA Personnel</span>
+        </div>
+
+        <nav class="footer-links" aria-label="Liens de pied de page">
+            <a th:href="@{/mentions-legales}">Mentions légales</a>
+            <a th:href="@{/confidentialite}">Confidentialité</a>
+            <a th:href="@{/conditions}">CGU</a>
+            <a th:href="@{/contact}">Contact</a>
+        </nav>
+
+        <p class="footer-copy">
+            © <span th:text="${#dates.year(#dates.createNow())}">2026</span> Talking Hawa — Tous droits réservés.
+        </p>
+    </div>
 </footer>
 
 </body>

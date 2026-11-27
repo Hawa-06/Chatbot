@@ -1,42 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+</head>
 <body>
 
-<!-- Fragment "header" : appelé par base.html avec fragments/header :: header -->
-<header th:fragment="header" class="bg-dark text-white py-3">
-    <div class="container d-flex flex-wrap align-items-center gap-3">
-
-        <a th:href="@{/}" class="h5 mb-0 text-white text-decoration-none">Omega IA</a>
-
-        <!-- Nouvelle conversation -->
-        <a th:href="@{/}" class="btn btn-outline-light btn-sm">
-            + Nouvelle conversation
+<header th:fragment="navbar" class="app-header">
+    <div class="header-container">
+        <!-- Logo & Nom -->
+        <a th:href="@{/}" class="header-brand">
+            <span class="header-avatar" aria-hidden="true">👩🏾‍🦱</span>
+            <span class="header-title">Talking <span>Hawa</span></span>
         </a>
 
-        <!-- Historique des conversations (menu déroulant Bootstrap) -->
-        <div class="dropdown">
-            <button class="btn btn-secondary btn-sm dropdown-toggle"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                Historique
-            </button>
-            <div class="dropdown-menu p-0" style="min-width: 20rem;">
-                <div class="list-group list-group-flush">
-                    <a th:each="c : ${conversations}"
-                       th:href="@{/conversations/{id}(id=${c.id})}"
-                       th:text="${c.titre}"
-                       class="list-group-item list-group-item-action"
-                       th:classappend="${conversation != null and conversation.id == c.id} ? 'active' : ''">
-                    </a>
-                    <span th:if="${#lists.isEmpty(conversations)}"
-                          class="list-group-item text-muted">
-                        Aucune conversation
-                    </span>
-                </div>
-            </div>
-        </div>
+        <!-- Navigation centrale -->
+        <nav class="header-nav" aria-label="Navigation principale">
+            <a th:href="@{/chat}" class="nav-link active">💬 Chatbot</a>
+            <a th:href="@{/historique}" class="nav-link">Historique</a>
+            <a th:href="@{/parametres}" class="nav-link">Paramètres</a>
+        </nav>
 
+        <!-- Actions à droite -->
+        <div class="header-actions">
+            <a th:href="@{/upgrade}" class="btn-upgrade">✦ Mettre à niveau</a>
+            <a th:href="@{/login}" class="btn-logout">Déconnexion</a>
+        </div>
     </div>
 </header>
 
